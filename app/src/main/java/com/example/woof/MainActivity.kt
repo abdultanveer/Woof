@@ -21,6 +21,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -159,6 +162,15 @@ fun DogItem(
 
     Card(modifier = modifier) {
       //  modifier = modifier.clip(MaterialTheme.shapes.medium)
+        Column(
+            modifier = Modifier
+                .animateContentSize(
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioNoBouncy,
+                        stiffness = Spring.StiffnessMedium
+                    )
+                )
+        ){
         Row(
             modifier = modifier
 
@@ -186,6 +198,7 @@ fun DogItem(
                     bottom = dimensionResource(R.dimen.padding_medium)
                 )
             )
+        }
         }
     }
 }
